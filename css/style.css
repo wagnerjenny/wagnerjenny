@@ -133,7 +133,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   flex-shrink: 0;
 }
 
-.brand-logo { height: 44px; width: auto; }
+.brand-logo { height: 30px; width: auto; }
 
 .brand-mark { width: 34px; height: 34px; flex-shrink: 0; }
 .brand-mark.small { width: 40px; height: 40px; }
@@ -593,6 +593,6 @@ input:focus, select:focus, textarea:focus {
 
 @media (max-width: 480px) {
   .header-inner { padding: 12px 16px; }
-  .brand-logo { height: 34px; }
+  .brand-logo { height: 24px; }
   .hero { padding: 56px 0 64px; }
 }
