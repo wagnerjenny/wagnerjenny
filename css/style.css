@@ -169,8 +169,6 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .main-nav a:hover { color: var(--copper-dark); }
 
-.header-cta { flex-shrink: 0; }
-
 .nav-toggle {
   display: none;
   flex-direction: column;
@@ -580,7 +578,6 @@ input:focus, select:focus, textarea:focus {
   .main-nav li { border-top: 1px solid var(--border); }
   .main-nav a { display: block; padding: 14px 0; }
   .nav-toggle { display: flex; }
-  .header-cta { display: none; }
   .hero-inner { grid-template-columns: 1fr; }
   .hero-visual { order: -1; margin-bottom: 20px; }
   .hero-ring { width: 220px; height: 220px; }
