@@ -25,7 +25,7 @@
   var yearEl = document.getElementById("year");
   if (yearEl) { yearEl.textContent = new Date().getFullYear(); }
 
-  // Contact form -> mailto handoff (no backend available)
+  // Contact form -> sent directly via FormSubmit (formsubmit.co), no email client involved
   var form = document.getElementById("contactForm");
   var formNote = document.getElementById("formNote");
 
@@ -35,8 +35,6 @@
 
       var nome = form.nome.value.trim();
       var email = form.email.value.trim();
-      var telefone = form.telefone.value.trim();
-      var area = form.area.value;
       var mensagem = form.mensagem.value.trim();
 
       if (!nome || !email || !mensagem) {
@@ -44,21 +42,31 @@
         return;
       }
 
-      var subject = "Contato pelo site — " + area;
-      var body =
-        "Nome: " + nome + "\n" +
-        "E-mail: " + email + "\n" +
-        "Telefone: " + (telefone || "não informado") + "\n" +
-        "Área de interesse: " + area + "\n\n" +
-        "Mensagem:\n" + mensagem;
+      var area = form.area.value;
+      form.querySelector('[name="_subject"]').value = "Contato pelo site — " + area;
 
-      var mailtoLink =
-        "mailto:wagnerjenny@adv.oabsp.org.br" +
-        "?subject=" + encodeURIComponent(subject) +
-        "&body=" + encodeURIComponent(body);
+      var submitBtn = form.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      formNote.textContent = "Enviando...";
 
-      window.location.href = mailtoLink;
-      formNote.textContent = "Abrindo seu aplicativo de e-mail para concluir o envio...";
+      var ajaxAction = form.action.replace("formsubmit.co/", "formsubmit.co/ajax/");
+
+      fetch(ajaxAction, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" }
+      })
+        .then(function (response) {
+          if (!response.ok) { throw new Error("request failed"); }
+          formNote.textContent = "Mensagem enviada com sucesso! Retornaremos em breve.";
+          form.reset();
+        })
+        .catch(function () {
+          formNote.textContent = "Não foi possível enviar agora. Tente novamente ou fale pelo WhatsApp.";
+        })
+        .finally(function () {
+          submitBtn.disabled = false;
+        });
     });
   }
 
