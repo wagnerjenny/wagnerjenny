@@ -258,20 +258,6 @@ ul { margin: 0; padding: 0; list-style: none; }
   filter: drop-shadow(0 18px 28px rgba(139, 83, 39, 0.25));
 }
 .hero-mark img { width: 100%; height: auto; display: block; }
-.hero-ring {
-  position: absolute;
-  width: 340px;
-  height: 340px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-}
-.hero-ring::before {
-  content: "";
-  position: absolute;
-  inset: 40px;
-  border-radius: 50%;
-  border: 1px dashed var(--border);
-}
 
 /* ---------- Section heading ---------- */
 .section-heading { max-width: 680px; margin-bottom: 48px; }
@@ -570,7 +556,6 @@ input:focus, select:focus, textarea:focus {
   .nav-toggle { display: flex; }
   .hero-inner { grid-template-columns: 1fr; }
   .hero-visual { order: -1; margin-bottom: 20px; }
-  .hero-ring { width: 220px; height: 220px; }
   .hero-mark { width: 180px; }
   .cards-grid, .courses-grid { grid-template-columns: 1fr; }
   section { padding: 64px 0; }
